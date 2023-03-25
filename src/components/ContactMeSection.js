@@ -1,3 +1,4 @@
+import FullScreenSection from "./FullScreenSection";
 import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import {
@@ -13,13 +14,12 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as Yup from "yup";
-import FullScreenSection from "./FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
 import { useAlertContext } from "../context/alertContext";
 
-const ContactMeSection = () => {
+const ContactMeSection = ({ children }) => {
   const { isLoading, response, submit } = useSubmit();
-  const { onOpen } = useAlertContext();
+  const { onOpen } = useAlertContext() || {};
 
   const formik = useFormik({
     initialValues: {
@@ -39,20 +39,19 @@ const ContactMeSection = () => {
         .min(25, "Must be at least 25 characters"),
     }),
   });
+
   useEffect(() => {
-    if (response.type === "success") {
-      onOpen({
-        title: "Form submitted successfully",
-        description: `Thank you for getting in touch, ${formik.values.firstName}! I will get back to you soon.`,
-        status: "success",
-      });
+    if (response && response.type === "success") {
+      onOpen(
+        "success",
+        `Thank you for getting in touch, ${formik.values.firstName}! I will get back to you soon.`
+      );
       formik.resetForm();
-    } else if (response.type === "error") {
-      onOpen({
-        title: "Form submission failed",
-        description: `Something went wrong while submitting the form. Please try again later.`,
-        status: "error",
-      });
+    } else if (response && response.type === "error") {
+      onOpen(
+        "error",
+        "Something went wrong while submitting the form. Please try again later."
+      );
     }
   }, [response, formik, onOpen]);
 
@@ -124,9 +123,9 @@ const ContactMeSection = () => {
                   id="comment"
                   name="comment"
                   height={250}
+                  value={formik.values.comment}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.comment}
                 />
                 <FormErrorMessage>
                   {formik.touched.comment && formik.errors.comment}
@@ -143,6 +142,7 @@ const ContactMeSection = () => {
             </VStack>
           </form>
         </Box>
+        {children}
       </VStack>
     </FullScreenSection>
   );

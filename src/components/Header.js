@@ -1,33 +1,26 @@
 import React, { useEffect, useRef } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGithub,
-  faLinkedin,
-  faMedium,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
+
 import { Box, HStack } from "@chakra-ui/react";
 
 const socials = [
   {
-    icon: faEnvelope,
+    label: "Contact",
     url: "mailto: hello@example.com",
   },
   {
-    icon: faGithub,
+    label: "GitHub",
     url: "https://github.com",
   },
   {
-    icon: faLinkedin,
+    label: "LinkedIn",
     url: "https://www.linkedin.com",
   },
   {
-    icon: faMedium,
+    label: "Medium",
     url: "https://medium.com",
   },
   {
-    icon: faStackOverflow,
+    label: "stackOverFlow",
     url: "https://stackoverflow.com",
   },
 ];
@@ -66,8 +59,8 @@ const Header = () => {
           <nav>
             <HStack spacing={4}>
               {socials.map((social) => (
-                <a key={social.icon} href={social.url}>
-                  <FontAwesomeIcon icon={social.icon} size="2x" />
+                <a key={social.label} href={social.url}>
+                  {social.label}
                 </a>
               ))}
             </HStack>
@@ -75,21 +68,19 @@ const Header = () => {
           <nav>
             <HStack spacing={8}>
               <a
-                href="/#projects-section"
+                href="/#projects"
                 id="projects-section"
                 onClick={handleClick("projects")}
               >
                 {" "}
-                {/*check if changing "/#projects-section" to "/#projects" would break the app. Also check if needed to delete the above line with {" "}*/}
                 Projects
               </a>
               <a
-                href="/#contactme-section"
+                href="/#contactme"
                 id="contactme-section"
                 onClick={handleClick("contactme")}
               >
                 {" "}
-                {/*check if changing "/#contactme-section" to "/#contactme" would break the app. Also check if needed to delete the above line with {" "}*/}
                 Contact Me
               </a>
             </HStack>
