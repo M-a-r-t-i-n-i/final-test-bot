@@ -39,32 +39,6 @@ const App = () => {
         <SimpleGrid columns={[1, 2, 3]} spacing={8} />
         <ContactMeSection />
         <SimpleGrid columns={[1, 2, 3]} spacing={8} />
-        {/* <Box bg="gray.200" borderRadius="md" p={4}>
-          <Heading size="md" mb={2}>
-            Project 1
-          </Heading>
-          <Text fontSize="md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            suscipit justo ac ultrices cursus.
-          </Text>
-        </Box>
-        <Box bg="gray.200" borderRadius="md" p={4}>
-          <Heading size="md" mb={2}>
-            Project 2
-          </Heading>
-          <Text fontSize="md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            suscipit justo ac ultrices cursus.
-          </Text>
-        </Box>
-        <Box bg="gray.200" borderRadius="md" p={4}>
-          <Heading size="md" mb={2}>
-            Project 3
-          </Heading>
-          <Text fontSize="md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sus
-          </Text>
-        </Box> */}
       </ChakraBaseProvider>
     </>
   );
